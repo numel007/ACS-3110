@@ -6,9 +6,21 @@ def merge(items1, items2):
     and return a new list containing all items in sorted order.
     TODO: Running time: ??? Why and under what conditions?
     TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until one list is empty
-    # TODO: Find minimum item in both lists and append it to new list
-    # TODO: Append remaining items in non-empty list to new list
+
+    if not items1 and not items2:
+        return []
+    elif not items1:
+      # Recurse in items2 until empty
+        return [items2[0]] + merge(items1, items2[1:])
+    elif not items2:
+      # Recurse in items1 until empty
+        return [items1[0]] + merge(items1[1:], items2)
+    else:
+        if items1[0] < items2[0]:
+            return [items1[0]] + merge(items1[1:], items2)
+        else:
+            return [items2[0]] + merge(items1, items2[1:])
+
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
@@ -19,6 +31,14 @@ def merge_sort(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half by recursively calling merge sort
     # TODO: Merge sorted halves into one list in sorted order
+    if len(items) == 1:
+        return items
+    else:
+        midpoint = len(items) // 2
+        left = merge_sort(items[:midpoint])
+        right = merge_sort(items[midpoint:])
+        items = merge(left, right)
+    return items
 
 
 def partition(items, low, high):
@@ -45,3 +65,9 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+
+
+# print(merge([1, 3, 5, 7], [2, 4, 6, 8]))
+items = [48, 6, 17, 38]
+merge_sort(items)
+print(items)
