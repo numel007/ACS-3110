@@ -58,9 +58,3 @@ def insertion_sort(items):
             else:
                 items.insert(j, items.pop(old_index))
                 break
-
-
-items = [50, 41, 18, 26, 49, 26, 32, 49, 49,
-         31, 10, 41, 22, 26, 24, 5, 35, 39, 4, 11]
-insertion_sort(items)
-print(items)
