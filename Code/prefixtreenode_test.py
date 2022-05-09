@@ -49,3 +49,7 @@ class PrefixTreeNodeTest(unittest.TestCase):
         # Verify adding node 'C' as child to node 'A' again raises error
         with self.assertRaises(ValueError):
             node_A.add_child('C', node_C)
+
+
+if __name__ == '__main__':
+    unittest.main()
